@@ -23,13 +23,14 @@ def main():
         print("Usage: ./fetch [--metadata] <url1> <url2> ...")
         sys.exit(1)
 
-    urls = sys.argv[1:]
+    urls = sys.argv[2:]  # Exclude the first argument (script name) and optional flag
+    include_metadata = "--metadata" in sys.argv
     for url in urls:
         fetcher = FetcherFactory.create_fetcher(url)
         content = fetcher.fetch()
         if content:
             save_html(content, url)
-            if "--metadata" in sys.argv:
+            if include_metadata:
                 metadata = MetadataFactory.create_metadata(content)
                 save_metadata(url, metadata)
 
