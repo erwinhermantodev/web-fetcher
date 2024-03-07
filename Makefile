@@ -1,7 +1,9 @@
-.PHONY: run
+.PHONY: fetch-metadata fetch-only
 
-run:
-    docker run web-fetcher python /app/web-fetcher/main.py $(ARGS)
+DOCKER_RUN=docker run --rm -v $(PWD):/app web-fetcher python /app/main.py
 
-run-metadata:
-    docker run web-fetcher python /app/web-fetcher/main.py --metadata $(ARGS)
+fetch-metadata:
+	$(DOCKER_RUN) $(URLS) --metadata
+
+fetch-only:
+	$(DOCKER_RUN) $(URLS)
