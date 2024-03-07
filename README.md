@@ -35,7 +35,7 @@ Now, you can use the Docker image to fetch URLs. There are two options:
 To fetch URLs along with metadata such as number of links, number of images, and last fetch time:
 
 ```bash
-docker run --rm -v $(pwd):/app web-fetcher python /app/main.py --metadata "https://www.google.com" "https://autify.com"
+make fetch-metadata URLS="https://www.google.com https://autify.com"
 ```
 
 Replace `"https://www.google.com" "https://autify.com"` with the URLs you want to fetch.
@@ -46,6 +46,6 @@ To fetch URLs without metadata:
 
 ```bash
 
-docker run --rm -v $(pwd):/app web-fetcher python /app/main.py "https://www.google.com" "https://autify.com"
+make fetch-only URLS="https://www.google.com https://autify.com"
 
 ```
